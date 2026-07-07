@@ -33,11 +33,11 @@ config_ugls = {
     "UGL XXXIV Concordia": {"cod": "34", "ext": "docx"} 
 }
 
-# Función crucial para la nube: Instala Chromium de forma nativa en el contenedor
 @st.cache_resource
 def preparar_entorno_playwright():
-    st.write("Configurando dependencias del navegador en el servidor (esto ocurre solo una vez)...")
+    # Ya no necesitamos que intente descargar dependencias pesadas, solo el binario de Chromium
     os.system("playwright install chromium")
+# Función crucial para la nube: Instala Chromium de forma nativa en el contenedor
 
 # --- Interfaz de Streamlit ---
 if st.button('🚀 Iniciar Búsqueda en PAMI'):
