@@ -9,6 +9,11 @@ st.set_page_config(page_title="Buscador Licitaciones UGL", layout="wide")
 st.title("🔎 Monitoreo de Licitaciones PAMI")
 st.subheader("Neuromodulación y Alta Complejidad")
 
+@st.cache_resource
+def preparar_entorno_playwright():
+    # Esto descarga el binario puro de Playwright dentro del entorno
+    os.system("playwright install chromium")
+
 # --- Parámetros de búsqueda ---
 palabras_clave = [
     'kit', 'neuro', 'neurocirugía', 'estimulador', 'batería',
@@ -33,11 +38,6 @@ config_ugls = {
     "UGL XXXIV Concordia": {"cod": "34", "ext": "docx"} 
 }
 
-@st.cache_resource
-def preparar_entorno_playwright():
-    # Ya no necesitamos que intente descargar dependencias pesadas, solo el binario de Chromium
-    os.system("playwright install chromium")
-# Función crucial para la nube: Instala Chromium de forma nativa en el contenedor
 
 # --- Interfaz de Streamlit ---
 if st.button('🚀 Iniciar Búsqueda en PAMI'):
